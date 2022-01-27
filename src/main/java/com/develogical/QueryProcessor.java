@@ -1,5 +1,9 @@
 package com.develogical;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class QueryProcessor {
 
     public String process(String query) {
@@ -28,14 +32,14 @@ public class QueryProcessor {
 
         if (query.toLowerCase().contains("largest")) {
             // which%20of%20the%20following%20numbers%20is%20the%20largest:%2044,%2017
-            String[] parts = query.split(":")[2].split(",");
-            int a = Integer.parseInt(parts[0].trim());
-            int b = Integer.parseInt(parts[1].trim());
-            if (a > b) {
-                return Integer.toString(a);
-            } else {
-                return Integer.toString(b);
+            String[] parts = query.split(":");
+            String[] numbers = parts[2].split(",");
+            List<Integer> ns = new ArrayList<Integer>();
+            for (String number : numbers) {
+                ns.add(Integer.parseInt(number.trim()));
             }
+
+            return Integer.toString(Collections.max(ns));
         }
 
         return "";
