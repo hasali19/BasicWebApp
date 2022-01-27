@@ -93,7 +93,6 @@ public class QueryProcessor {
         if (query.toLowerCase().contains("primes")) {
             String[] parts = query.split(":");
             String[] numbers = parts[2].split(",");
-            List<Integer> ns = new ArrayList<>();
             List<String> results = new ArrayList<>();
 
             for (String number : numbers) {
@@ -106,11 +105,12 @@ public class QueryProcessor {
             return String.join(", ", results);
         }
 
-//        if (query.toLowerCase().contains("fibonacci")) {
-//            String[] parts = query.split(": ")[1].split(" ");
-//            String nth = parts[3].substring(0, parts[3].length() - 3);
-//            int n = Integer.parseInt(nth);
-//        }
+        if (query.toLowerCase().contains("fibonacci")) {
+            String[] parts = query.split(": ")[1].split(" ");
+            String nth = parts[3].substring(0, parts[3].length() - 2);
+            int n = Integer.parseInt(nth);
+            return Integer.toString(fib(n));
+        }
 
         return "";
     }
@@ -123,5 +123,12 @@ public class QueryProcessor {
             }
         }
         return false;
+    }
+
+    private int fib(int n) {
+        if (n <= 1) {
+            return n;
+        }
+        return fib(n - 1) + fib(n - 2);
     }
 }
