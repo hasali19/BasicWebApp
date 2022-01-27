@@ -51,6 +51,24 @@ public class QueryProcessor {
             return Integer.toString(Collections.max(ns));
         }
 
+        if (query.toLowerCase().contains("a square and a cube")) {
+            String[] parts = query.split(":");
+            String[] numbers = parts[2].split(",");
+            List<Integer> ns = new ArrayList<>();
+            List<String> results = new ArrayList<>();
+
+            for (String number : numbers) {
+                int n = Integer.parseInt(number.trim());
+                double sqrt = Math.sqrt(n);
+                double cbrt = Math.cbrt(n);
+                if (sqrt - Math.floor(sqrt) == 0 && cbrt - Math.floor(cbrt) == 0) {
+                    results.add(Integer.toString(n));
+                }
+            }
+
+            return String.join(", ", results);
+        }
+
         return "";
     }
 }
