@@ -21,6 +21,10 @@ public class QueryProcessor {
             return "Imperial College is a university in London";
         }
 
+        if (query.toLowerCase().contains("theresa may")) {
+            return "2016";
+        }
+
         if (query.toLowerCase().contains("banana")) {
             return "yellow";
         }
@@ -77,6 +81,32 @@ public class QueryProcessor {
             return String.join(", ", results);
         }
 
+        if (query.toLowerCase().contains("primes")) {
+            String[] parts = query.split(":");
+            String[] numbers = parts[2].split(",");
+            List<Integer> ns = new ArrayList<>();
+            List<String> results = new ArrayList<>();
+
+            for (String number : numbers) {
+                int n = Integer.parseInt(number.trim());
+                if (isPrime(n)) {
+                    results.add(Integer.toString(n));
+                }
+            }
+
+            return String.join(", ", results);
+        }
+
         return "";
+    }
+
+    private boolean isPrime(int n) {
+        for (int i = 2; i <= n / 2; ++i) {
+            // condition for nonprime number
+            if (n % i == 0) {
+                return true;
+            }
+        }
+        return false;
     }
 }
