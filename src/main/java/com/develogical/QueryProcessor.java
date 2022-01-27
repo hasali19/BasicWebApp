@@ -17,6 +17,11 @@ public class QueryProcessor {
             return "HA";
         }
 
+        if (query.toLowerCase().contains("plus")) {
+            String[] parts = query.split(" ");
+            return Integer.toString(Integer.parseInt(parts[0]) + Integer.parseInt(parts[1]));
+        }
+
         return "";
     }
 }
