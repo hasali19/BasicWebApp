@@ -42,6 +42,15 @@ public class QueryProcessor {
             }
         }
 
+        if (query.toLowerCase().contains("minus")) {
+            try {
+                String[] parts = query.split(" ");
+                return Integer.toString(Integer.parseInt(parts[parts.length - 3]) - Integer.parseInt(parts[parts.length - 1]));
+            } catch (Exception ex) {
+                return "";
+            }
+        }
+
         if (query.toLowerCase().contains("multiplied")) {
             try {
                 String[] parts = query.split(" ");
@@ -96,6 +105,12 @@ public class QueryProcessor {
 
             return String.join(", ", results);
         }
+
+//        if (query.toLowerCase().contains("fibonacci")) {
+//            String[] parts = query.split(": ")[1].split(" ");
+//            String nth = parts[3].substring(0, parts[3].length() - 3);
+//            int n = Integer.parseInt(nth);
+//        }
 
         return "";
     }
