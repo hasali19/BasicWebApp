@@ -1,6 +1,7 @@
 package com.develogical;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -35,8 +36,10 @@ public class QueryProcessor {
 
         if (query.toLowerCase().contains("plus")) {
             try {
-                String[] parts = query.split(" ");
-                return Integer.toString(Integer.parseInt(parts[parts.length - 3]) + Integer.parseInt(parts[parts.length - 1]));
+                String [] parts = query.split(" plus ");
+                String[] first = parts[0].split(" ");
+                parts[0] = first[first.length - 1];
+                return Integer.toString(Arrays.stream(parts).mapToInt(Integer::parseInt).sum());
             } catch (Exception ex) {
                 return "";
             }
