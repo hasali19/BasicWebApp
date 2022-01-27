@@ -39,6 +39,12 @@ public class QueryProcessorTest {
     }
 
     @Test
+    public void knowsMultiply() throws Exception {
+        assertThat(queryProcessor.process("7a1eb5b0: what is 6 multiplied by 18"),
+                containsString(Integer.toString(6 * 18)));
+    }
+
+    @Test
     public void isNotCaseSensitive() throws Exception {
         assertThat(queryProcessor.process("shakespeare"), containsString("playwright"));
     }

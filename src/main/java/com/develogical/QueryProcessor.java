@@ -30,6 +30,15 @@ public class QueryProcessor {
             }
         }
 
+        if (query.toLowerCase().contains("multiplied")) {
+            try {
+                String[] parts = query.split(" ");
+                return Integer.toString(Integer.parseInt(parts[parts.length - 4]) * Integer.parseInt(parts[parts.length - 1]));
+            } catch (Exception ex) {
+                return "";
+            }
+        }
+
         if (query.toLowerCase().contains("largest")) {
             // which%20of%20the%20following%20numbers%20is%20the%20largest:%2044,%2017
             String[] parts = query.split(":");
